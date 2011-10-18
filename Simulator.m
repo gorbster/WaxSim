@@ -81,7 +81,12 @@
         return EXIT_FAILURE;
     }
     
-    DTiPhoneSimulatorSystemRoot *sdkRoot = [DTiPhoneSimulatorSystemRoot defaultRoot];
+    if (!_sdk) {
+        WaxLog(@"No iPhoneSimulatorSystemRoot value specified.");
+        return EXIT_FAILURE;
+    }
+    
+    DTiPhoneSimulatorSystemRoot *sdkRoot = _sdk;
     
     DTiPhoneSimulatorSessionConfig *config = [[DTiPhoneSimulatorSessionConfig alloc] init];
     [config setApplicationToSimulateOnStart:appSpec];
